@@ -41,23 +41,22 @@ docker run -it -p 1880:1880 --name mynodered nodered/node-red
 
 ### Running Python Scripts
 
-* Clone this repository:
+1. Clone this repository:
 ```bash
-git clone https://github.com/your-username/36zero-vision-automation-assignment.git
+git clone https://github.com/anmarchio/vision-automation-assignment.git
 ```
 
-* Navigate to the project directory:
+1. Navigate to the project directory:
 ```bash
 cd python-scripts
 ```
 
-* Install dependencies:
+1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-* Run the script:
-
+1. Run the script:
 ```bash
 python your-script-name.py
 ```
