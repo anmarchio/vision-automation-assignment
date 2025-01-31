@@ -46,19 +46,19 @@ docker run -it -p 1880:1880 --name mynodered nodered/node-red
 git clone https://github.com/anmarchio/vision-automation-assignment.git
 ```
 
-1. Navigate to the project directory:
+2. Navigate to the project directory:
 ```bash
-cd python-scripts
+cd vision-automation-assignment
 ```
 
-1. Install dependencies:
+3. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-1. Run the script:
+4. Run the script:
 ```bash
-python your-script-name.py
+python main.py
 ```
 
 ## 📚 Features
