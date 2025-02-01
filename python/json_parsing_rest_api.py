@@ -1,8 +1,9 @@
-from utils import parse_json
+from python.utils import parse_json
 
 SERIAL_IDS = []
 
-def count_conficence(filename: str, threshold: float = 0.99):
+
+def count_confidence(filename: str, threshold: float = 0.99):
     fi_confidence_values, tr_values, _ = parse_json(filename)
     count = 0
     for v in fi_confidence_values:
@@ -19,6 +20,7 @@ def send_count():
         pass
     except Exception as e:
         print(e)
+
 
 def get_serial_id():
     # - Extract all tr_values
