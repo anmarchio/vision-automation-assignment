@@ -24,6 +24,16 @@ The key objectives of this project are:
 
 ## 🛠 **How to Run the Project**
 
+1. Clone this repository:
+```bash
+git clone https://github.com/anmarchio/vision-automation-assignment.git
+```
+
+2. Navigate to the project directory:
+```bash
+cd vision-automation-assignment
+```
+
 ### Running Node-RED
 
 * Pull the official Node-RED Docker image:
@@ -39,24 +49,34 @@ docker run -it -p 1880:1880 --name mynodered nodered/node-red
 * Open Node-RED in your browser: http://localhost:1880.
 * Import the flow from node-red-flows/flow.json.
 
+#### Additional Nodes
+
+* In the node-red dashboard, go to `Management > Palette verwalten`
+* Choose Installation: `@opcua/for-node-red`
+* Click `Installieren`
+* Check if `@opcua/ua-client` shows up under `Installierte Nodes`
+
+#### Open Node-Red Flows
+
+* Click `management/import`
+* Choose the files from `node-red/`
+  * `node-red/ipc-communication.json` for the IPC communication flow
+  * `node-red/opc-ua-communication.json` for the OPC UA communication flow
+  * `node-red/rest-api-communication.json` for the REST API communication flow
+* To execute one node, select the related tab and click `deploy`
+* Execution will then run locally and show output in the debug window
+
 ### Running Python Scripts
 
-1. Clone this repository:
-```bash
-git clone https://github.com/anmarchio/vision-automation-assignment.git
-```
+For reasons of completeness, the same functionality can also be executed as python scripts.
+For the purpose, proceed as follows:
 
-2. Navigate to the project directory:
-```bash
-cd vision-automation-assignment
-```
-
-3. Install dependencies:
+1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the script:
+2. Run the script:
 ```bash
 python main.py
 ```
