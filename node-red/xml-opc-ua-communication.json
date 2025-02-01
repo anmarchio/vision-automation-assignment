@@ -1,0 +1,264 @@
+[
+    {
+        "id": "1",
+        "type": "tab",
+        "label": "XML and OPC UA Communication",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "read-xml",
+        "type": "file in",
+        "z": "1",
+        "name": "Read 4.xml",
+        "filename": "D:\\dev\\github\\vae-assignment\\4.xml",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "allProps": false,
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "parse-xml"
+            ]
+        ]
+    },
+    {
+        "id": "parse-xml",
+        "type": "xml",
+        "z": "1",
+        "name": "Parse XML",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "extract-fault"
+            ]
+        ]
+    },
+    {
+        "id": "extract-fault",
+        "type": "function",
+        "z": "1",
+        "name": "Extract Fault and Severity",
+        "func": "let faults = msg.payload.ProcessData.Results.UpView.FaultsList?.Fault || [];\nlet faultData = [];\n\nif (!Array.isArray(faults)) faults = [faults];\n\nfaults.forEach(fault => {\n    faultData.push({\n        type: fault.Type[0],\n        severity: fault.Severity[0]\n    });\n});\n\nif (faultData.length > 0) {\n    msg.payload = faultData;\n    return msg;\n} else {\n    node.warn(\"No fault data found\");\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "aec2222b4297078c"
+            ]
+        ]
+    },
+    {
+        "id": "debug-success",
+        "type": "debug",
+        "z": "1",
+        "name": "Success Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1170,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "catch-errors",
+        "type": "catch",
+        "z": "1",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "log-errors"
+            ]
+        ]
+    },
+    {
+        "id": "log-errors",
+        "type": "debug",
+        "z": "1",
+        "name": "Log Errors",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 310,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "status-monitor",
+        "type": "status",
+        "z": "1",
+        "name": "Monitor OPC UA Connection",
+        "scope": [
+            "aec2222b4297078c"
+        ],
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "reconnection-logic"
+            ]
+        ]
+    },
+    {
+        "id": "reconnection-logic",
+        "type": "function",
+        "z": "1",
+        "name": "Reconnection Logic",
+        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to OPC UA server...');\n    // Reconnection logic if applicable\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aec2222b4297078c",
+        "type": "OpcUa-Client2-Write",
+        "z": "1",
+        "inputs": 1,
+        "output": 4,
+        "name": "OPC UA Write",
+        "endpoint": "f947f1b9978ecc4a",
+        "attributeId": "Value",
+        "nodeId": "",
+        "x": 890,
+        "y": 140,
+        "wires": [
+            [
+                "debug-success"
+            ]
+        ]
+    },
+    {
+        "id": "a71102cad8855eb7",
+        "type": "inject",
+        "z": "1",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "read-xml"
+            ]
+        ]
+    },
+    {
+        "id": "130c478e8f51bd33",
+        "type": "comment",
+        "z": "1",
+        "name": "Task 3: OPC UA",
+        "info": "",
+        "x": 120,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f947f1b9978ecc4a",
+        "type": "OpcUa-Endpoint2",
+        "name": "OPC UA Connection",
+        "endpoint": "opc.tcp://opcuademo.sterfive.com:26543/UA/SampleServer",
+        "securityMode": "None",
+        "securityPolicy": "None",
+        "userIdentityType": "Anonymous",
+        "pkiName": "",
+        "useTransport": false,
+        "maxChunkCount": 1,
+        "maxMessageSize": 8192,
+        "receiveBufferSize": 8192,
+        "sendBufferSize": 8192,
+        "subscriptions": [
+            {
+                "id": "s0",
+                "name": "Default Subscription",
+                "isDefault": true,
+                "parameters": {
+                    "publishingEnabled": true,
+                    "requestedLifetimeCount": "1000",
+                    "requestedMaxKeepAliveCount": "10",
+                    "requestedPublishingInterval": "1000",
+                    "maxNotificationsPerPublish": "0",
+                    "priority": "100"
+                }
+            },
+            {
+                "id": "s1",
+                "name": "Slow Subscription",
+                "isDefault": true,
+                "parameters": {
+                    "publishingEnabled": true,
+                    "requestedLifetimeCount": "100",
+                    "requestedMaxKeepAliveCount": "3",
+                    "requestedPublishingInterval": "5000",
+                    "maxNotificationsPerPublish": "100",
+                    "priority": "10"
+                }
+            },
+            {
+                "id": "s2",
+                "name": "Fast Subscription",
+                "isDefault": true,
+                "parameters": {
+                    "publishingEnabled": true,
+                    "requestedLifetimeCount": "4000",
+                    "requestedMaxKeepAliveCount": "50",
+                    "requestedPublishingInterval": "250",
+                    "maxNotificationsPerPublish": "100",
+                    "priority": "200"
+                }
+            }
+        ],
+        "namespaceAliases": [
+            {
+                "namespaceUri": "http://opcfoundation.org/UA/",
+                "alias": "ua"
+            },
+            {
+                "namespaceUri": "http://opcfoundation.org/DI/",
+                "alias": "di"
+            }
+        ]
+    }
+]

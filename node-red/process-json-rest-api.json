@@ -1,0 +1,264 @@
+[
+    {
+        "id": "c1a01d9b5d27c1c8",
+        "type": "tab",
+        "label": "Process JSON and REST API",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "adf1e724b8455c4f",
+        "type": "file in",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Read 1.json",
+        "filename": "D:\\dev\\github\\vae-assignment\\1.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "allProps": false,
+        "x": 160,
+        "y": 160,
+        "wires": [
+            [
+                "f4f5122ddab5b06d"
+            ]
+        ]
+    },
+    {
+        "id": "f4f5122ddab5b06d",
+        "type": "json",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "33d2a5d10c8a5a67",
+                "a5c43c0bb2cd5bc1"
+            ]
+        ]
+    },
+    {
+        "id": "33d2a5d10c8a5a67",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Count fi_confidence > 0.99",
+        "func": "let fiConfidenceValues = msg.payload.results.up.fi_confidence || [];\nlet count = fiConfidenceValues.filter(v => v > 0.99).length;\nmsg.payload = { count: count };\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 140,
+        "wires": [
+            [
+                "4518b2cb44d7b2c7",
+                "793d1edfb6d454ac"
+            ]
+        ]
+    },
+    {
+        "id": "4518b2cb44d7b2c7",
+        "type": "http request",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "POST fi_confidence count",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.example.com/fi_confidence",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [
+            {
+                "keyType": "Content-Type",
+                "keyValue": "",
+                "valueType": "other",
+                "valueValue": ""
+            }
+        ],
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "97c25b25f4abdf13"
+            ]
+        ]
+    },
+    {
+        "id": "97c25b25f4abdf13",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "API Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1280,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a5c43c0bb2cd5bc1",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Extract tr_values",
+        "func": "let trValues = msg.payload.results.up.tr_values || [];\nmsg.payload = trValues;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "4606a04298a2e4c9"
+            ]
+        ]
+    },
+    {
+        "id": "4606a04298a2e4c9",
+        "type": "split",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Split tr_values",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": "1",
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "property": "payload",
+        "x": 780,
+        "y": 220,
+        "wires": [
+            [
+                "33bb11dd78a37f2d"
+            ]
+        ]
+    },
+    {
+        "id": "33bb11dd78a37f2d",
+        "type": "http request",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Call REST API",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://api.example.com/serials/{{{payload}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1000,
+        "y": 220,
+        "wires": [
+            [
+                "cb452c3d4b8e3e8f"
+            ]
+        ]
+    },
+    {
+        "id": "cb452c3d4b8e3e8f",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "API Response for tr_values",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1320,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "793d1edfb6d454ac",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "fi_confidence",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 910,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "82f9dc11bf8753c9",
+        "type": "comment",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Task 1: REST API Call",
+        "info": "",
+        "x": 180,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "8c6c84f841712e24",
+        "type": "catch",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 140,
+        "y": 400,
+        "wires": [
+            [
+                "b4aa15dd533a7d8a"
+            ]
+        ]
+    },
+    {
+        "id": "b4aa15dd533a7d8a",
+        "type": "file",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Write Error Log",
+        "filename": "D:\\dev\\github\\vae-assignment\\errors.log",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 360,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "307a3173e37dd000",
+        "type": "comment",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Error Handling",
+        "info": "",
+        "x": 150,
+        "y": 340,
+        "wires": []
+    }
+]

@@ -1,0 +1,574 @@
+{
+    "device_id": "xyz_usecase",
+    "data_t": "2024-08-06T15:30:37.261697+02:00",
+    "image_path": "xyz_usecase/2024/08/06/15/2024-08-06T15:30:37.261697+02:00.jpg",
+    "results": {
+        "oringe": {
+            "faults_list": [
+                [
+                    [
+                        2389,
+                        856,
+                        2389,
+                        868,
+                        2401,
+                        878,
+                        2442,
+                        872,
+                        2535,
+                        871,
+                        2629,
+                        885,
+                        2644,
+                        883,
+                        2642,
+                        869,
+                        2615,
+                        858,
+                        2439,
+                        849
+                    ]
+                ],
+                [
+                    [
+                        2407,
+                        903,
+                        2411,
+                        920,
+                        2444,
+                        914,
+                        2530,
+                        911,
+                        2640,
+                        921,
+                        2638,
+                        904,
+                        2544,
+                        888,
+                        2467,
+                        888,
+                        2417,
+                        897
+                    ]
+                ],
+                [
+                    [
+                        2408,
+                        945,
+                        2409,
+                        960,
+                        2466,
+                        951,
+                        2522,
+                        951,
+                        2614,
+                        963,
+                        2637,
+                        961,
+                        2637,
+                        949,
+                        2620,
+                        940,
+                        2545,
+                        928,
+                        2447,
+                        930,
+                        2417,
+                        935
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    2306,
+                    647,
+                    2311,
+                    1293,
+                    2704,
+                    1302,
+                    2696,
+                    673,
+                    2488,
+                    643
+                ]
+            ],
+            "roi_class_score": 0.9994496703147888,
+            "numberMinDetectedObjects": 3,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        2389,
+                        856,
+                        2389,
+                        868,
+                        2401,
+                        878,
+                        2442,
+                        872,
+                        2535,
+                        871,
+                        2629,
+                        885,
+                        2644,
+                        883,
+                        2642,
+                        869,
+                        2615,
+                        858,
+                        2439,
+                        849
+                    ]
+                ],
+                [
+                    [
+                        2407,
+                        903,
+                        2411,
+                        920,
+                        2444,
+                        914,
+                        2530,
+                        911,
+                        2640,
+                        921,
+                        2638,
+                        904,
+                        2544,
+                        888,
+                        2467,
+                        888,
+                        2417,
+                        897
+                    ]
+                ],
+                [
+                    [
+                        2408,
+                        945,
+                        2409,
+                        960,
+                        2466,
+                        951,
+                        2522,
+                        951,
+                        2614,
+                        963,
+                        2637,
+                        961,
+                        2637,
+                        949,
+                        2620,
+                        940,
+                        2545,
+                        928,
+                        2447,
+                        930,
+                        2417,
+                        935
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0,
+                0,
+                0
+            ],
+            "mp_confidence": [
+                0.9994342923164368,
+                0.9962803721427917,
+                0.9962480664253235
+            ],
+            "mp_classes_labels": [
+                "oringe"
+            ],
+            "tr_masks": [],
+            "tr_classes": [],
+            "tr_confidence": [],
+            "tr_classes_labels": [],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [],
+            "mt_values": [],
+            "mr_values": []
+        },
+        "halbschale": {
+            "faults_list": [
+                [
+                    [
+                        2117,
+                        2687,
+                        2101,
+                        2683,
+                        1942,
+                        2772,
+                        1819,
+                        2809,
+                        1830,
+                        2815,
+                        1867,
+                        2810,
+                        1985,
+                        2771,
+                        2116,
+                        2694
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    1810,
+                    2725,
+                    1815,
+                    2896,
+                    1857,
+                    2928,
+                    2121,
+                    2994,
+                    2418,
+                    2930,
+                    2445,
+                    2898,
+                    2434,
+                    2838,
+                    2446,
+                    2759,
+                    2428,
+                    2734,
+                    2144,
+                    2638,
+                    2025,
+                    2640
+                ]
+            ],
+            "roi_class_score": 0.9992629885673523,
+            "numberMinDetectedObjects": 1,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        2117,
+                        2687,
+                        2101,
+                        2683,
+                        1942,
+                        2772,
+                        1819,
+                        2809,
+                        1830,
+                        2815,
+                        1867,
+                        2810,
+                        1985,
+                        2771,
+                        2116,
+                        2694
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0
+            ],
+            "mp_confidence": [
+                0.9995143413543701
+            ],
+            "mp_classes_labels": [
+                "ok_position"
+            ],
+            "tr_masks": [],
+            "tr_classes": [],
+            "tr_confidence": [],
+            "tr_classes_labels": [],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [],
+            "mt_values": [],
+            "mr_values": []
+        },
+        "etikett": {
+            "faults_list": [
+                [
+                    [
+                        1372,
+                        1562,
+                        1390,
+                        1975,
+                        1807,
+                        1972,
+                        1801,
+                        1561
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    1306,
+                    1496,
+                    1296,
+                    2022,
+                    1317,
+                    2066,
+                    1831,
+                    2027,
+                    1871,
+                    2006,
+                    1876,
+                    1795,
+                    1846,
+                    1502
+                ]
+            ],
+            "roi_class_score": 0.9981353282928467,
+            "numberMinDetectedObjects": 1,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        1372,
+                        1562,
+                        1390,
+                        1975,
+                        1807,
+                        1972,
+                        1801,
+                        1561
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0
+            ],
+            "mp_confidence": [
+                0.999581515789032
+            ],
+            "mp_classes_labels": [
+                "etikett"
+            ],
+            "tr_masks": [
+                [
+                    [
+                        1702,
+                        1635,
+                        1702,
+                        1713,
+                        1722,
+                        1713,
+                        1723,
+                        1636
+                    ]
+                ]
+            ],
+            "tr_classes": [
+                0
+            ],
+            "tr_confidence": [
+                0.999433696269989
+            ],
+            "tr_classes_labels": [
+                "ekrk"
+            ],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [
+                [
+                    [
+                        1622,
+                        1734,
+                        1618,
+                        1742,
+                        1620,
+                        1957,
+                        1696,
+                        1960,
+                        1697,
+                        1738
+                    ]
+                ]
+            ],
+            "mr_classes": [
+                0
+            ],
+            "mr_confidence": [
+                0.9991200566291809
+            ],
+            "mr_classes_labels": [
+                "barcode"
+            ],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [
+                " 0249891\n"
+            ],
+            "mt_values": [],
+            "mr_values": [
+                " 437671"
+            ]
+        },
+        "faser": {
+            "faults_list": [
+                [
+                    [
+                        2407,
+                        2148,
+                        2392,
+                        2156,
+                        2381,
+                        2250,
+                        2318,
+                        2423,
+                        2234,
+                        2555,
+                        2136,
+                        2659,
+                        2164,
+                        2662,
+                        2234,
+                        2592,
+                        2327,
+                        2442,
+                        2399,
+                        2244
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    2437,
+                    1838,
+                    2376,
+                    1836,
+                    2357,
+                    1876,
+                    2357,
+                    2188,
+                    2317,
+                    2350,
+                    2277,
+                    2444,
+                    2142,
+                    2612,
+                    2136,
+                    2659,
+                    2298,
+                    2666,
+                    2339,
+                    2694,
+                    2421,
+                    2681,
+                    2457,
+                    2322
+                ]
+            ],
+            "roi_class_score": 0.9967489242553711,
+            "numberMinDetectedObjects": 1,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        2407,
+                        2148,
+                        2392,
+                        2156,
+                        2381,
+                        2250,
+                        2318,
+                        2423,
+                        2234,
+                        2555,
+                        2136,
+                        2659,
+                        2164,
+                        2662,
+                        2234,
+                        2592,
+                        2327,
+                        2442,
+                        2399,
+                        2244
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0
+            ],
+            "mp_confidence": [
+                0.9996839761734009
+            ],
+            "mp_classes_labels": [
+                "faserposition"
+            ],
+            "tr_masks": [],
+            "tr_classes": [],
+            "tr_confidence": [],
+            "tr_classes_labels": [],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [],
+            "mt_values": [],
+            "mr_values": []
+        }
+    },
+    "list_of_cc_combinations_results": []
+}

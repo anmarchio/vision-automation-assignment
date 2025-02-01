@@ -1,0 +1,196 @@
+[
+    {
+        "id": "1f01fe57083a15d4",
+        "type": "tab",
+        "label": "IPC Communication",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "0d222ee35951571d",
+        "type": "file in",
+        "z": "1f01fe57083a15d4",
+        "name": "Read 3.json",
+        "filename": "D:\\dev\\github\\vae-assignment\\3.json",
+        "filenameType": "str",
+        "format": "utf8",
+        "allProps": false,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "7a1eecc26ebd3e09",
+                "807359536a3f8c06"
+            ]
+        ]
+    },
+    {
+        "id": "7a1eecc26ebd3e09",
+        "type": "json",
+        "z": "1f01fe57083a15d4",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "ce8650479414fdd7"
+            ]
+        ]
+    },
+    {
+        "id": "ce8650479414fdd7",
+        "type": "function",
+        "z": "1f01fe57083a15d4",
+        "name": "Check Threshold",
+        "func": "let detectedObjects = msg.payload.results?.oringe?.numberMinDetectedObjects || 0;\n\nif (detectedObjects >= 2) {\n    node.warn(\"Threshold exceeded: Sending DIO signal\");\n    msg.payload = { dioSignal: 1 };  // Payload to send DIO signal\n    return msg;\n} else {\n    node.warn(\"Threshold not met: No action\");\n    return null;\n}",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "9deeec752a3a0b05"
+            ]
+        ]
+    },
+    {
+        "id": "9deeec752a3a0b05",
+        "type": "tcp out",
+        "z": "1f01fe57083a15d4",
+        "name": "Send DIO Signal",
+        "host": "192.168.0.100",
+        "port": "502",
+        "beserver": "client",
+        "base64": false,
+        "end": false,
+        "tls": "",
+        "x": 870,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b5cd12a21d435d5f",
+        "type": "catch",
+        "z": "1f01fe57083a15d4",
+        "name": "Catch Errors",
+        "scope": null,
+        "uncaught": false,
+        "x": 270,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cd539504dfc5fca",
+        "type": "debug",
+        "z": "1f01fe57083a15d4",
+        "name": "Log Errors",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "x": 470,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8c0c4145d9919a56",
+        "type": "status",
+        "z": "1f01fe57083a15d4",
+        "name": "Monitor DIO Connection",
+        "scope": [
+            "9deeec752a3a0b05"
+        ],
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "554c736218505baf"
+            ]
+        ]
+    },
+    {
+        "id": "554c736218505baf",
+        "type": "function",
+        "z": "1f01fe57083a15d4",
+        "name": "Reconnection Logic",
+        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to IPC...');\n    // Logic to attempt reconnection or notify user\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c41a052f3f88f645",
+        "type": "comment",
+        "z": "1f01fe57083a15d4",
+        "name": "Task 2: IPC Integration",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "807359536a3f8c06",
+        "type": "debug",
+        "z": "1f01fe57083a15d4",
+        "name": "Debug Treshold",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c9ab8b092e8cb666",
+        "type": "inject",
+        "z": "1f01fe57083a15d4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "0d222ee35951571d"
+            ]
+        ]
+    }
+]

@@ -1,0 +1,185 @@
+{
+    "device_id": "xyz_usecase",
+    "data_t": "2024-03-14T12:49:59.059308+02:00",
+    "image_path": "xyz_usecase/2024/03/14/12/2024-03-14T12:49:59.059308+02:00.jpg",
+    "results": {
+        "up": {
+            "faults_list": [],
+            "roi_boundary": [
+                [
+                    526,
+                    113,
+                    499,
+                    338,
+                    504,
+                    703,
+                    942,
+                    737,
+                    1011,
+                    715,
+                    1030,
+                    361,
+                    1018,
+                    313,
+                    897,
+                    152,
+                    817,
+                    99
+                ]
+            ],
+            "roi_class_score": 0.9998117089271545,
+            "numberMinDetectedObjects": 0,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [
+                [
+                    [
+                        794,
+                        619,
+                        786,
+                        623,
+                        775,
+                        636,
+                        771,
+                        648,
+                        772,
+                        661,
+                        776,
+                        669,
+                        789,
+                        679,
+                        809,
+                        680,
+                        818,
+                        678,
+                        828,
+                        671,
+                        833,
+                        661,
+                        834,
+                        649,
+                        831,
+                        637,
+                        827,
+                        630,
+                        816,
+                        621,
+                        809,
+                        619
+                    ]
+                ],
+                [
+                    [
+                        993,
+                        282,
+                        989,
+                        289,
+                        987,
+                        301,
+                        987,
+                        333,
+                        990,
+                        348,
+                        997,
+                        348,
+                        1000,
+                        338,
+                        1000,
+                        304,
+                        998,
+                        287
+                    ]
+                ]
+            ],
+            "fi_classes": [
+                0,
+                0
+            ],
+            "fi_confidence": [
+                0.9948429465293884,
+                0.972234308719635
+            ],
+            "fi_classes_labels": [
+                "scone"
+            ],
+            "mp_masks": [],
+            "mp_classes": [],
+            "mp_confidence": [],
+            "mp_classes_labels": [],
+            "tr_masks": [
+                [
+                    [
+                        515,
+                        141,
+                        515,
+                        190,
+                        533,
+                        198,
+                        845,
+                        202,
+                        861,
+                        192,
+                        860,
+                        149,
+                        845,
+                        140,
+                        539,
+                        130
+                    ]
+                ],
+                [
+                    [
+                        527,
+                        207,
+                        527,
+                        265,
+                        537,
+                        270,
+                        839,
+                        278,
+                        919,
+                        271,
+                        918,
+                        216,
+                        899,
+                        209
+                    ]
+                ]
+            ],
+            "tr_classes": [
+                0,
+                1
+            ],
+            "tr_confidence": [
+                0.999290943145752,
+                0.9977236390113831
+            ],
+            "tr_classes_labels": [
+                "serialnumber",
+                "brand",
+                "company"
+            ],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [
+                " 00929\n140521\n",
+                " Germany 126713\n"
+            ],
+            "mt_values": [],
+            "mr_values": []
+        }
+    },
+    "list_of_cc_combinations_results": []
+}

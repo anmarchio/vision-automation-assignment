@@ -1,0 +1,575 @@
+{
+    "device_id": "xyz_usecase",
+    "data_t": "2024-03-14T12:49:59.059308+02:00",
+    "image_path": "xyz_usecase/2024/03/14/12/2024-03-14T12:49:59.059308+02:00.jpg",
+    "results": {
+        "up": {
+            "faults_list": [],
+            "roi_boundary": [
+                [
+                    526,
+                    113,
+                    499,
+                    338,
+                    504,
+                    703,
+                    942,
+                    737,
+                    1011,
+                    715,
+                    1030,
+                    361,
+                    1018,
+                    313,
+                    897,
+                    152,
+                    817,
+                    99
+                ]
+            ],
+            "roi_class_score": 0.9998117089271545,
+            "numberMinDetectedObjects": 0,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [
+                [
+                    [
+                        794,
+                        619,
+                        786,
+                        623,
+                        775,
+                        636,
+                        771,
+                        648,
+                        772,
+                        661,
+                        776,
+                        669,
+                        789,
+                        679,
+                        809,
+                        680,
+                        818,
+                        678,
+                        828,
+                        671,
+                        833,
+                        661,
+                        834,
+                        649,
+                        831,
+                        637,
+                        827,
+                        630,
+                        816,
+                        621,
+                        809,
+                        619
+                    ]
+                ],
+                [
+                    [
+                        993,
+                        282,
+                        989,
+                        289,
+                        987,
+                        301,
+                        987,
+                        333,
+                        990,
+                        348,
+                        997,
+                        348,
+                        1000,
+                        338,
+                        1000,
+                        304,
+                        998,
+                        287
+                    ]
+                ]
+            ],
+            "fi_classes": [
+                0,
+                0
+            ],
+            "fi_confidence": [
+                0.9948429465293884,
+                0.972234308719635
+            ],
+            "fi_classes_labels": [
+                "scone"
+            ],
+            "mp_masks": [],
+            "mp_classes": [],
+            "mp_confidence": [],
+            "mp_classes_labels": [],
+            "tr_masks": [
+                [
+                    [
+                        515,
+                        141,
+                        515,
+                        190,
+                        533,
+                        198,
+                        845,
+                        202,
+                        861,
+                        192,
+                        860,
+                        149,
+                        845,
+                        140,
+                        539,
+                        130
+                    ]
+                ],
+                [
+                    [
+                        527,
+                        207,
+                        527,
+                        265,
+                        537,
+                        270,
+                        839,
+                        278,
+                        919,
+                        271,
+                        918,
+                        216,
+                        899,
+                        209
+                    ]
+                ]
+            ],
+            "tr_classes": [
+                0,
+                1
+            ],
+            "tr_confidence": [
+                0.999290943145752,
+                0.9977236390113831
+            ],
+            "tr_classes_labels": [
+                "serialnumber",
+                "brand",
+                "company"
+            ],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [
+                " 00929\n140521\n",
+                " Germany 126713\n"
+            ],
+            "mt_values": [],
+            "mr_values": []
+        },
+        "down": {
+            "faults_list": [
+                [
+                    [
+                        497,
+                        1040,
+                        499,
+                        1061,
+                        500,
+                        1107,
+                        506,
+                        1113,
+                        506,
+                        1046,
+                        502,
+                        1041
+                    ]
+                ],
+                [
+                    [
+                        747,
+                        1044,
+                        732,
+                        1044,
+                        730,
+                        1047,
+                        730,
+                        1114,
+                        735,
+                        1111,
+                        747,
+                        1090
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    505,
+                    726,
+                    494,
+                    747,
+                    501,
+                    1184,
+                    739,
+                    1188,
+                    745,
+                    739,
+                    726,
+                    724
+                ]
+            ],
+            "roi_class_score": 0.9990981817245483,
+            "numberMinDetectedObjects": 2,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        497,
+                        1040,
+                        499,
+                        1061,
+                        500,
+                        1107,
+                        506,
+                        1113,
+                        506,
+                        1046,
+                        502,
+                        1041
+                    ]
+                ],
+                [
+                    [
+                        747,
+                        1044,
+                        732,
+                        1044,
+                        730,
+                        1047,
+                        730,
+                        1114,
+                        735,
+                        1111,
+                        747,
+                        1090
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0,
+                0
+            ],
+            "mp_confidence": [
+                0.999035120010376,
+                0.9981139898300171
+            ],
+            "mp_classes_labels": [
+                "side"
+            ],
+            "tr_masks": [],
+            "tr_classes": [],
+            "tr_confidence": [],
+            "tr_classes_labels": [],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [],
+            "mt_values": [],
+            "mr_values": []
+        },
+        "left": {
+            "faults_list": [],
+            "roi_boundary": [
+                [
+                    479,
+                    113,
+                    424,
+                    113,
+                    359,
+                    148,
+                    312,
+                    201,
+                    264,
+                    288,
+                    235,
+                    393,
+                    238,
+                    522,
+                    260,
+                    573,
+                    455,
+                    574,
+                    480,
+                    552,
+                    490,
+                    146
+                ]
+            ],
+            "roi_class_score": 0.9988627433776855,
+            "numberMinDetectedObjects": 0,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [
+                "bad"
+            ],
+            "mp_masks": [],
+            "mp_classes": [],
+            "mp_confidence": [],
+            "mp_classes_labels": [],
+            "tr_masks": [],
+            "tr_classes": [],
+            "tr_confidence": [],
+            "tr_classes_labels": [],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [
+                [
+                    [
+                        327,
+                        195,
+                        323,
+                        230,
+                        325,
+                        325,
+                        453,
+                        327,
+                        458,
+                        236,
+                        454,
+                        197,
+                        437,
+                        193
+                    ]
+                ],
+                [
+                    [
+                        347,
+                        360,
+                        342,
+                        375,
+                        340,
+                        486,
+                        344,
+                        492,
+                        470,
+                        496,
+                        476,
+                        487,
+                        474,
+                        365,
+                        462,
+                        359
+                    ]
+                ]
+            ],
+            "mr_classes": [
+                0,
+                1
+            ],
+            "mr_confidence": [
+                0.9986705780029297,
+                0.9967586398124695
+            ],
+            "mr_classes_labels": [
+                "qrtwo",
+                "qrone"
+            ],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [],
+            "mt_values": [],
+            "mr_values": [
+                " 973298000111210320011206",
+                " 6834911-0101C140521000929"
+            ]
+        },
+        "right": {
+            "faults_list": [
+                [
+                    [
+                        272,
+                        728,
+                        261,
+                        723,
+                        234,
+                        726,
+                        178,
+                        724,
+                        173,
+                        729,
+                        170,
+                        795,
+                        177,
+                        827,
+                        259,
+                        827,
+                        271,
+                        823
+                    ]
+                ]
+            ],
+            "roi_boundary": [
+                [
+                    179,
+                    723,
+                    170,
+                    742,
+                    171,
+                    804,
+                    199,
+                    881,
+                    343,
+                    1019,
+                    378,
+                    1031,
+                    399,
+                    1024,
+                    411,
+                    1006,
+                    399,
+                    961,
+                    320,
+                    877,
+                    290,
+                    829,
+                    279,
+                    733,
+                    252,
+                    720
+                ]
+            ],
+            "roi_class_score": 0.9979754090309143,
+            "numberMinDetectedObjects": 1,
+            "cameraHeight": 0,
+            "cameraWidth": 0,
+            "fi_masks": [],
+            "fi_classes": [],
+            "fi_confidence": [],
+            "fi_classes_labels": [],
+            "mp_masks": [
+                [
+                    [
+                        272,
+                        728,
+                        261,
+                        723,
+                        234,
+                        726,
+                        178,
+                        724,
+                        173,
+                        729,
+                        170,
+                        795,
+                        177,
+                        827,
+                        259,
+                        827,
+                        271,
+                        823
+                    ]
+                ]
+            ],
+            "mp_classes": [
+                0
+            ],
+            "mp_confidence": [
+                0.9980036616325378
+            ],
+            "mp_classes_labels": [
+                "stamp"
+            ],
+            "tr_masks": [
+                [
+                    [
+                        208,
+                        879,
+                        208,
+                        891,
+                        346,
+                        1021,
+                        387,
+                        1030,
+                        408,
+                        1005,
+                        404,
+                        986,
+                        325,
+                        921,
+                        258,
+                        856,
+                        241,
+                        856
+                    ]
+                ]
+            ],
+            "tr_classes": [
+                0
+            ],
+            "tr_confidence": [
+                0.9994262456893921
+            ],
+            "tr_classes_labels": [
+                "text"
+            ],
+            "mt_masks": [],
+            "mt_classes": [],
+            "mt_confidence": [],
+            "mt_classes_labels": [],
+            "mr_masks": [],
+            "mr_classes": [],
+            "mr_confidence": [],
+            "mr_classes_labels": [],
+            "ad_masks": [],
+            "ad_classes": [],
+            "ad_confidence": [],
+            "ad_classes_labels": [
+                "fault"
+            ],
+            "tr_values": [
+                " 20.03.21\n"
+            ],
+            "mt_values": [],
+            "mr_values": []
+        }
+    },
+    "list_of_cc_combinations_results": []
+}

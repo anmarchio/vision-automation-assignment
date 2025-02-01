@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProcessData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <DeviceID>xyz_usecase</DeviceID>
+        <Timestamp>2024-03-14T12:49:59.059308+02:00</Timestamp>
+        <BatchID>BATCH_001</BatchID>
+        <OperatorID>OP_123</OperatorID>
+    </Header>
+    <Results>
+        <UpView>
+            <FaultsList>
+                <Fault>
+                    <Coordinates>
+                        <Point x="526" y="113" />
+                        <Point x="499" y="338" />
+                        <Point x="504" y="703" />
+                    </Coordinates>
+                    <Severity>High</Severity>
+                    <Type>Surface</Type>
+                </Fault>
+            </FaultsList>
+            <ROIBoundary>
+                <Points>
+                    <Point x="526" y="113" />
+                    <Point x="499" y="338" />
+                    <Point x="504" y="703" />
+                    <Point x="942" y="737" />
+                    <Point x="1011" y="715" />
+                </Points>
+                <ConfidenceScore>0.9998117089271545</ConfidenceScore>
+            </ROIBoundary>
+            <DetectionResults>
+                <MinDetectedObjects>2</MinDetectedObjects>
+                <Confidence>0.995</Confidence>
+                <Classification>Pass</Classification>
+            </DetectionResults>
+            <Measurements>
+                <Feature id="F1">
+                    <Type>Length</Type>
+                    <Value>123.45</Value>
+                    <Unit>mm</Unit>
+                    <Tolerance>
+                        <Upper>125.0</Upper>
+                        <Lower>122.0</Lower>
+                    </Tolerance>
+                </Feature>
+                <Feature id="F2">
+                    <Type>Angle</Type>
+                    <Value>90.2</Value>
+                    <Unit>degrees</Unit>
+                    <Tolerance>
+                        <Upper>91.0</Upper>
+                        <Lower>89.0</Lower>
+                    </Tolerance>
+                </Feature>
+            </Measurements>
+        </UpView>
+        <QualityMetrics>
+            <ProcessCapability>
+                <CpK>1.33</CpK>
+                <Cp>1.45</Cp>
+            </ProcessCapability>
+            <DefectRate>0.02</DefectRate>
+            <YieldRate>99.98</YieldRate>
+        </QualityMetrics>
+        <OPCUASignals>
+            <Signal>
+                <NodeID>ns=2;s=Device1.ProcessData.Quality</NodeID>
+                <Value>1</Value>
+                <Timestamp>2024-03-14T12:49:59.059308+02:00</Timestamp>
+                <Quality>Good</Quality>
+            </Signal>
+            <Signal>
+                <NodeID>ns=2;s=Device1.ProcessData.Temperature</NodeID>
+                <Value>23.5</Value>
+                <Timestamp>2024-03-14T12:49:59.059308+02:00</Timestamp>
+                <Quality>Good</Quality>
+            </Signal>
+        </OPCUASignals>
+    </Results>
+    <Alarms>
+        <Alarm>
+            <ID>ALM_001</ID>
+            <Severity>Warning</Severity>
+            <Message>Temperature approaching upper limit</Message>
+            <Timestamp>2024-03-14T12:49:59.059308+02:00</Timestamp>
+        </Alarm>
+    </Alarms>
+    <Diagnostics>
+        <SystemHealth>Good</SystemHealth>
+        <LastCalibration>2024-03-13T00:00:00Z</LastCalibration>
+        <NextCalibrationDue>2024-04-13T00:00:00Z</NextCalibrationDue>
+        <MemoryUsage>65.5</MemoryUsage>
+        <CPULoad>45.2</CPULoad>
+    </Diagnostics>
+</ProcessData>
