@@ -1,0 +1,24 @@
+# Questions related to assignment
+
+## On Task 1:
+
+Concerning the potential API endpoints:
+- is there a general definition? How is the endpoint reachable?
+- is authentication necessary? Can I assume a made up endpoint (which is now the case)?
+
+Concerning Serial ID API Calls:
+- is the api endpoint defined in any form?
+- is the ID callable as e.g. `example.com/serial/<id>`?
+
+## Task 2:
+- Which interface should be used for DIO communication (MQTT, OPC UA, GPIO with commercial sdk)?
+- can I assume that the DIO communication is a one-way communication, e.g. `0.0.0.0:500`?
+- which signal should be sent? A 1 for "on"? Or the numberOfDetectedObjects?
+
+## Task 3:
+- Same question as above: is the OPC UA endpoint defined?
+- if not, I will define a default endpoint for opc ua testing (e.g. a commercial available service such as sterfive)
+
+## Additional Requirements:
+- how far-reaching should the unit testing be?
+- there different schools of thought and expectations, therefore I will assume minimal testing for the sake of time

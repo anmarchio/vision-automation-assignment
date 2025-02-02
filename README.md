@@ -15,12 +15,16 @@ The key objectives of this project are:
 
 ## 📁 **Project Structure**
 ```plaintext
-├── node-red-flows/         # Node-RED flow files (exported JSON)
-├── python-scripts/         # Python processing scripts
-├── assets/                 # Relevant images or reference files
-├── requirements.txt        # Python dependencies (if applicable)
-└── README.md               # Project documentation
+├── endpoints/          # Python helper scripts
+├── node-red/           # Node-RED flow files (exported JSON)
+├── requirements.txt    # Python dependencies (if applicable)
+└── README.md           # Project documentation
 ```
+
+## 🛠 **Install Prerequesites**
+
+* Get and install java for your environment: https://www.java.com/en/download/
+* Get and Extract JMeter: https://jmeter.apache.org/download_jmeter.cgi
 
 ## 🛠 **How to Run the Project**
 
@@ -36,35 +40,41 @@ cd vision-automation-assignment
 
 ### Running Node-RED
 
-* Pull the official Node-RED Docker image:
+* For the windows setup, see: https://nodered.org/docs/getting-started/windows
+* Download node red from: https://nodejs.org/en/
+* Install node red by running the installer
+* Open the command prompt and run:
 ```bash
-docker pull nodered/node-red
-```
-
-* Start Node-RED:
-```bash
-docker run -it -p 1880:1880 --name mynodered nodered/node-red
+node-red
 ```
 
 * Open Node-RED in your browser: http://localhost:1880.
-* Import the flow from node-red-flows/flow.json.
+* Import the flows as described below.
 
 #### Additional Nodes
 
-* In the node-red dashboard, go to `Management > Palette verwalten`
+* In the node-red dashboard, go to `Management > Palette Management`
 * Choose Installation: `@opcua/for-node-red`
-* Click `Installieren`
-* Check if `@opcua/ua-client` shows up under `Installierte Nodes`
+* Click `Install`
+* Check if `@opcua/ua-client` shows up under `Installed Nodes`
 
 #### Open Node-Red Flows
 
-* Click `management/import`
-* Choose the files from `node-red/`
-  * `node-red/ipc-communication.json` for the IPC communication flow
-  * `node-red/opc-ua-communication.json` for the OPC UA communication flow
-  * `node-red/rest-api-communication.json` for the REST API communication flow
+* Select `management/import`
+* Choose related files from `node-red/`
+  * Task 1: `node-red/ipc-communication.json` for the IPC communication flow
+  * Task 2: `node-red/opc-ua-communication.json` for the OPC UA communication flow
+  * Task 3: `node-red/rest-api-communication.json` for the REST API communication flow
 * To execute one node, select the related tab and click `deploy`
-* Execution will then run locally and show output in the debug window
+* Execution will then run locally and output should appear in the debug window
+
+### Set Environemt Variables
+
+* open `management\settings`
+* Insert variables by clicking `add`:
+  * Insert the path of the root directory on your machine, e.g. as: 
+  * `ROOT_PATH`: `<YOUR-DIRECTORY>\vision-automation-assignment`
+  * `WEBHOOK`: `localhost:8000`
 
 ### Running Python Scripts
 
@@ -81,12 +91,22 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## 📚 Features
-* Data Parsing: Handling JSON and XML data formats
-* System Integration: REST API and IPC/OPC UA communication
-* Exception Handling: Robust flow control and error handling
-* Low-Code Automation: Utilizing Node-RED for efficient automation
+4. Run script for the equivalent task:
+
+* *For Task 1:* 
+  * start local server: `uvicorn app:app --reload --host 0.0.0.0 --port 8000`
+  * select `1` when running `python main.py` 
+* *Task 2:* 
+  * Run: `python main.py`
+  * Select `2` 
+* *Task 3:*
+  * Will write message to: `opc.tcp://opcuademo.sterfive.com:26543/UA/SampleServer` 
 
 ## ⚠️ Error Handling
 * Node-RED catch nodes for structured exception handling
 * Python try/except blocks for resilient data processing
+
+## 📝 **Recommended Improvements**
+* Unit testing for python scripts and potentially for node-red
+* Containerization for the environment when the specific destination platform is given (raspi, edge PC, linux server)
+* Integration with hosted CI/CD pipeline

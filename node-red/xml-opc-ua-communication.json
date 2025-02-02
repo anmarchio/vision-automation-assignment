@@ -1,66 +1,70 @@
 [
     {
-        "id": "1",
+        "id": "37a5c325cf9b0143",
         "type": "tab",
         "label": "XML and OPC UA Communication",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "read-xml",
+        "id": "1f78ec6ff4cc1d75",
         "type": "file in",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Read 4.xml",
-        "filename": "D:\\dev\\github\\vae-assignment\\4.xml",
-        "filenameType": "str",
+        "filename": "filepath",
+        "filenameType": "msg",
         "format": "utf8",
         "chunk": false,
         "sendError": true,
         "allProps": false,
-        "x": 270,
-        "y": 140,
-        "wires": [
-            [
-                "parse-xml"
-            ]
-        ]
-    },
-    {
-        "id": "parse-xml",
-        "type": "xml",
-        "z": "1",
-        "name": "Parse XML",
-        "property": "payload",
-        "attr": "",
-        "chr": "",
         "x": 450,
         "y": 140,
         "wires": [
             [
-                "extract-fault"
+                "50edc58fa51098f5"
             ]
         ]
     },
     {
-        "id": "extract-fault",
-        "type": "function",
-        "z": "1",
-        "name": "Extract Fault and Severity",
-        "func": "let faults = msg.payload.ProcessData.Results.UpView.FaultsList?.Fault || [];\nlet faultData = [];\n\nif (!Array.isArray(faults)) faults = [faults];\n\nfaults.forEach(fault => {\n    faultData.push({\n        type: fault.Type[0],\n        severity: fault.Severity[0]\n    });\n});\n\nif (faultData.length > 0) {\n    msg.payload = faultData;\n    return msg;\n} else {\n    node.warn(\"No fault data found\");\n    return null;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 650,
+        "id": "50edc58fa51098f5",
+        "type": "xml",
+        "z": "37a5c325cf9b0143",
+        "name": "Parse XML",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 630,
         "y": 140,
         "wires": [
             [
-                "aec2222b4297078c"
+                "16b8dff922d4cc24"
             ]
         ]
     },
     {
-        "id": "debug-success",
+        "id": "16b8dff922d4cc24",
+        "type": "function",
+        "z": "37a5c325cf9b0143",
+        "name": "Extract Fault and Severity",
+        "func": "let faultsList = msg.payload?.ProcessData?.Results[0]?.UpView[0]?.FaultsList || [];\n\n// Extract severity and type from each fault\nlet faultData = faultsList.map(fault => ({\n    severity: fault.Fault[0].Severity[0],\n    type: fault.Fault[0].Type[0]\n}));\n\nmsg.payload = faultData;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 850,
+        "y": 140,
+        "wires": [
+            [
+                "71a66349c29ea9dc"
+            ]
+        ]
+    },
+    {
+        "id": "7c9299b31c0bc5e8",
         "type": "debug",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Success Output",
         "active": true,
         "tosidebar": true,
@@ -70,14 +74,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1170,
+        "x": 1320,
         "y": 140,
         "wires": []
     },
     {
-        "id": "catch-errors",
+        "id": "fa63dd2c4b163233",
         "type": "catch",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
@@ -85,14 +89,14 @@
         "y": 240,
         "wires": [
             [
-                "log-errors"
+                "9cc31b12589e0e34"
             ]
         ]
     },
     {
-        "id": "log-errors",
+        "id": "9cc31b12589e0e34",
         "type": "debug",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Log Errors",
         "active": true,
         "tosidebar": true,
@@ -100,30 +104,32 @@
         "tostatus": false,
         "complete": "error",
         "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
         "x": 310,
         "y": 240,
         "wires": []
     },
     {
-        "id": "status-monitor",
+        "id": "2c03f15d175cc74f",
         "type": "status",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Monitor OPC UA Connection",
         "scope": [
-            "aec2222b4297078c"
+            "71a66349c29ea9dc"
         ],
         "x": 160,
         "y": 340,
         "wires": [
             [
-                "reconnection-logic"
+                "49098a0663edbd2f"
             ]
         ]
     },
     {
-        "id": "reconnection-logic",
+        "id": "49098a0663edbd2f",
         "type": "function",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Reconnection Logic",
         "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to OPC UA server...');\n    // Reconnection logic if applicable\n}\nreturn msg;",
         "outputs": 1,
@@ -139,27 +145,9 @@
         ]
     },
     {
-        "id": "aec2222b4297078c",
-        "type": "OpcUa-Client2-Write",
-        "z": "1",
-        "inputs": 1,
-        "output": 4,
-        "name": "OPC UA Write",
-        "endpoint": "f947f1b9978ecc4a",
-        "attributeId": "Value",
-        "nodeId": "",
-        "x": 890,
-        "y": 140,
-        "wires": [
-            [
-                "debug-success"
-            ]
-        ]
-    },
-    {
-        "id": "a71102cad8855eb7",
+        "id": "696c03f059fa76f8",
         "type": "inject",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "",
         "props": [
             {
@@ -172,23 +160,23 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 100,
+        "x": 110,
         "y": 140,
         "wires": [
             [
-                "read-xml"
+                "e66ab70cc5bc4088"
             ]
         ]
     },
     {
-        "id": "130c478e8f51bd33",
+        "id": "fb998448e151632c",
         "type": "comment",
-        "z": "1",
+        "z": "37a5c325cf9b0143",
         "name": "Task 3: OPC UA",
         "info": "",
         "x": 120,
@@ -196,9 +184,47 @@
         "wires": []
     },
     {
-        "id": "f947f1b9978ecc4a",
+        "id": "e66ab70cc5bc4088",
+        "type": "function",
+        "z": "37a5c325cf9b0143",
+        "name": "4.xml path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filepath = rootPath + \"\\\\4.xml\" \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 140,
+        "wires": [
+            [
+                "1f78ec6ff4cc1d75"
+            ]
+        ]
+    },
+    {
+        "id": "71a66349c29ea9dc",
+        "type": "OpcUa-Client2-Write",
+        "z": "37a5c325cf9b0143",
+        "inputs": 1,
+        "output": 4,
+        "name": "OPC UA Write",
+        "endpoint": "d5243af7c16fdf26",
+        "attributeId": "Value",
+        "nodeId": "",
+        "x": 1100,
+        "y": 140,
+        "wires": [
+            [
+                "7c9299b31c0bc5e8"
+            ]
+        ]
+    },
+    {
+        "id": "d5243af7c16fdf26",
         "type": "OpcUa-Endpoint2",
-        "name": "OPC UA Connection",
+        "name": "OPC UA Sterfive",
         "endpoint": "opc.tcp://opcuademo.sterfive.com:26543/UA/SampleServer",
         "securityMode": "None",
         "securityPolicy": "None",

@@ -3,28 +3,30 @@ JSON Parsing and REST API communication
 """
 import sys
 
+import uvicorn
+
+from endpoints.tcp_listener import run_tcp_listener
 from python.ipc_integration import monitor_objects
-from python.json_parsing_rest_api import count_conficence
 from python.opcua_communication import extract_and_send_faults_via_opc_ua
 
 
-def run_workflow():
-    # Task 1: parse json and sent REST API calls
-    count_conficence("1.json")
-    count_conficence("2.json")
-
-    # Task 2: IPC communication
-    monitor_objects("3.json")
-
-    # Task 3: OPC UA communication
-    extract_and_send_faults_via_opc_ua("4.xml")
-
-
 def main() -> int:
-    try:
-        run_workflow()
-    except:
-        return 1
+    print("Vision Assignment Endpoints")
+    print("=" * 30 + "\n")
+    print("Select an option:")
+    print("(1) Task 1: REST API communication")
+    print("(2) Task 2: IPC communication")
+    print("(3) Task 3: OPC UA communication\n")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        print("Running REST API server on 0.0.0.0:8000")
+        uvicorn.run("endpoints.api_endpoint:app", host="0.0.0.0", port=8000, reload=True)
+    elif choice == "2":
+        print("Run TCP Listener on 0.0.0.0:500")
+        run_tcp_listener()
+
     return 0
 
 

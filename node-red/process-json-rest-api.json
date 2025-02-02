@@ -11,14 +11,14 @@
         "type": "file in",
         "z": "c1a01d9b5d27c1c8",
         "name": "Read 1.json",
-        "filename": "D:\\dev\\github\\vae-assignment\\1.json",
-        "filenameType": "str",
+        "filename": "filename",
+        "filenameType": "msg",
         "format": "utf8",
         "chunk": false,
         "sendError": true,
         "allProps": false,
-        "x": 160,
-        "y": 160,
+        "x": 530,
+        "y": 140,
         "wires": [
             [
                 "f4f5122ddab5b06d"
@@ -33,12 +33,11 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 340,
-        "y": 160,
+        "x": 730,
+        "y": 140,
         "wires": [
             [
-                "33d2a5d10c8a5a67",
-                "a5c43c0bb2cd5bc1"
+                "33d2a5d10c8a5a67"
             ]
         ]
     },
@@ -54,12 +53,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 980,
         "y": 140,
         "wires": [
             [
-                "4518b2cb44d7b2c7",
-                "793d1edfb6d454ac"
+                "81c4ce5d4703f31d"
             ]
         ]
     },
@@ -71,7 +69,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://api.example.com/fi_confidence",
+        "url": "",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -86,7 +84,7 @@
                 "valueValue": ""
             }
         ],
-        "x": 1030,
+        "x": 1650,
         "y": 140,
         "wires": [
             [
@@ -107,7 +105,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1280,
+        "x": 1900,
         "y": 140,
         "wires": []
     },
@@ -116,15 +114,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "Extract tr_values",
-        "func": "let trValues = msg.payload.results.up.tr_values || [];\nmsg.payload = trValues;\nreturn msg;",
+        "func": "let trValues = msg.payload.results.up.tr_values || [];\nlet resultArray = trValues.map(item => {\n    return item.replace(/\\D+/g, '');\n});\n\nmsg.payload = resultArray;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
-        "y": 220,
+        "x": 950,
+        "y": 200,
         "wires": [
             [
                 "4606a04298a2e4c9"
@@ -143,11 +141,11 @@
         "stream": false,
         "addname": "",
         "property": "payload",
-        "x": 780,
-        "y": 220,
+        "x": 1180,
+        "y": 200,
         "wires": [
             [
-                "33bb11dd78a37f2d"
+                "c4d5b61677d7355b"
             ]
         ]
     },
@@ -159,7 +157,7 @@
         "method": "GET",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "http://api.example.com/serials/{{{payload}}}",
+        "url": "",
         "tls": "",
         "persist": false,
         "proxy": "",
@@ -167,8 +165,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1000,
-        "y": 220,
+        "x": 1620,
+        "y": 200,
         "wires": [
             [
                 "cb452c3d4b8e3e8f"
@@ -188,25 +186,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1320,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "793d1edfb6d454ac",
-        "type": "debug",
-        "z": "c1a01d9b5d27c1c8",
-        "name": "fi_confidence",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 910,
-        "y": 100,
+        "x": 1940,
+        "y": 200,
         "wires": []
     },
     {
@@ -227,10 +208,11 @@
         "scope": null,
         "uncaught": false,
         "x": 140,
-        "y": 400,
+        "y": 540,
         "wires": [
             [
-                "b4aa15dd533a7d8a"
+                "ee46e709f306bab6",
+                "a7d0a20a6d389774"
             ]
         ]
     },
@@ -239,14 +221,14 @@
         "type": "file",
         "z": "c1a01d9b5d27c1c8",
         "name": "Write Error Log",
-        "filename": "D:\\dev\\github\\vae-assignment\\errors.log",
-        "filenameType": "str",
+        "filename": "filename",
+        "filenameType": "msg",
         "appendNewline": true,
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 360,
-        "y": 400,
+        "x": 560,
+        "y": 540,
         "wires": [
             []
         ]
@@ -258,7 +240,269 @@
         "name": "Error Handling",
         "info": "",
         "x": 150,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "1a4635be608d34e3",
+        "type": "file in",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Read 2.json",
+        "filename": "filename",
+        "filenameType": "msg",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": true,
+        "allProps": false,
+        "x": 530,
+        "y": 200,
+        "wires": [
+            [
+                "593c9a0581ddee3b"
+            ]
+        ]
+    },
+    {
+        "id": "5092a256cd3bdebf",
+        "type": "inject",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "8490197798f1ce02",
+                "e3959aba106e6d25"
+            ]
+        ]
+    },
+    {
+        "id": "593c9a0581ddee3b",
+        "type": "json",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 730,
+        "y": 200,
+        "wires": [
+            [
+                "a5c43c0bb2cd5bc1"
+            ]
+        ]
+    },
+    {
+        "id": "8b9dc54418133acc",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "ROOT_PATH",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
         "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d209036b624d7f52",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "WEBHOOK",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "49ff98dabe34c7b1",
+        "type": "inject",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "TEST ${WEBHOOK}",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "WEBHOOK",
+        "payloadType": "env",
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "d209036b624d7f52"
+            ]
+        ]
+    },
+    {
+        "id": "3ab37fd0739727f6",
+        "type": "inject",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "TEST ${ROOT_PATH}",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "ROOT_PATH",
+        "payloadType": "env",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "8b9dc54418133acc"
+            ]
+        ]
+    },
+    {
+        "id": "8490197798f1ce02",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "1.json path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/144.json`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "adf1e724b8455c4f"
+            ]
+        ]
+    },
+    {
+        "id": "e3959aba106e6d25",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "2.json path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/2.json`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 200,
+        "wires": [
+            [
+                "1a4635be608d34e3"
+            ]
+        ]
+    },
+    {
+        "id": "c4d5b61677d7355b",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Build URL serials",
+        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/serials/${msg.payload}`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 200,
+        "wires": [
+            [
+                "33bb11dd78a37f2d"
+            ]
+        ]
+    },
+    {
+        "id": "81c4ce5d4703f31d",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Build URL fi_confidence",
+        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/fi_confidence`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 140,
+        "wires": [
+            [
+                "4518b2cb44d7b2c7"
+            ]
+        ]
+    },
+    {
+        "id": "ee46e709f306bab6",
+        "type": "function",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "error log path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 540,
+        "wires": [
+            [
+                "b4aa15dd533a7d8a"
+            ]
+        ]
+    },
+    {
+        "id": "a7d0a20a6d389774",
+        "type": "debug",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Log Errors",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 620,
         "wires": []
     }
 ]

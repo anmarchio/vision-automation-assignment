@@ -11,16 +11,15 @@
         "type": "file in",
         "z": "1f01fe57083a15d4",
         "name": "Read 3.json",
-        "filename": "D:\\dev\\github\\vae-assignment\\3.json",
-        "filenameType": "str",
+        "filename": "filename",
+        "filenameType": "msg",
         "format": "utf8",
         "allProps": false,
-        "x": 270,
+        "x": 470,
         "y": 180,
         "wires": [
             [
-                "7a1eecc26ebd3e09",
-                "807359536a3f8c06"
+                "7a1eecc26ebd3e09"
             ]
         ]
     },
@@ -32,7 +31,7 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 450,
+        "x": 670,
         "y": 180,
         "wires": [
             [
@@ -45,18 +44,19 @@
         "type": "function",
         "z": "1f01fe57083a15d4",
         "name": "Check Threshold",
-        "func": "let detectedObjects = msg.payload.results?.oringe?.numberMinDetectedObjects || 0;\n\nif (detectedObjects >= 2) {\n    node.warn(\"Threshold exceeded: Sending DIO signal\");\n    msg.payload = { dioSignal: 1 };  // Payload to send DIO signal\n    return msg;\n} else {\n    node.warn(\"Threshold not met: No action\");\n    return null;\n}",
+        "func": "let detectedObjects = msg.payload.results?.oringe?.numberMinDetectedObjects || 0;\n\nif (detectedObjects >= 2) {\n    // Payload contains numberOfDetectedObjects\n    // '1' will be sent as DIO signal\n    msg.payload = 1;  \n    return msg;\n} else {\n    return null;\n}",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 650,
+        "x": 890,
         "y": 180,
         "wires": [
             [
-                "9deeec752a3a0b05"
+                "9deeec752a3a0b05",
+                "807359536a3f8c06"
             ]
         ]
     },
@@ -65,13 +65,13 @@
         "type": "tcp out",
         "z": "1f01fe57083a15d4",
         "name": "Send DIO Signal",
-        "host": "192.168.0.100",
-        "port": "502",
+        "host": "0.0.0.0",
+        "port": "500",
         "beserver": "client",
         "base64": false,
         "end": false,
         "tls": "",
-        "x": 870,
+        "x": 1110,
         "y": 180,
         "wires": []
     },
@@ -82,10 +82,13 @@
         "name": "Catch Errors",
         "scope": null,
         "uncaught": false,
-        "x": 270,
+        "x": 110,
         "y": 280,
         "wires": [
-            []
+            [
+                "8cd539504dfc5fca",
+                "1179f74d22f6b51c"
+            ]
         ]
     },
     {
@@ -99,8 +102,10 @@
         "tostatus": false,
         "complete": "error",
         "targetType": "msg",
-        "x": 470,
-        "y": 280,
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 380,
         "wires": []
     },
     {
@@ -111,8 +116,8 @@
         "scope": [
             "9deeec752a3a0b05"
         ],
-        "x": 270,
-        "y": 380,
+        "x": 140,
+        "y": 480,
         "wires": [
             [
                 "554c736218505baf"
@@ -124,17 +129,19 @@
         "type": "function",
         "z": "1f01fe57083a15d4",
         "name": "Reconnection Logic",
-        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to IPC...');\n    // Logic to attempt reconnection or notify user\n}\nreturn msg;",
+        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to IPC...');\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 380,
+        "x": 370,
+        "y": 480,
         "wires": [
-            []
+            [
+                "24dd64bde856a0a2"
+            ]
         ]
     },
     {
@@ -160,7 +167,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 660,
+        "x": 1100,
         "y": 120,
         "wires": []
     },
@@ -180,17 +187,101 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
+        "once": true,
         "onceDelay": 0.1,
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 100,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "3f153042679ca7ce"
+            ]
+        ]
+    },
+    {
+        "id": "3f153042679ca7ce",
+        "type": "function",
+        "z": "1f01fe57083a15d4",
+        "name": "3.json path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/3.json`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
         "y": 180,
         "wires": [
             [
                 "0d222ee35951571d"
             ]
+        ]
+    },
+    {
+        "id": "24dd64bde856a0a2",
+        "type": "debug",
+        "z": "1f01fe57083a15d4",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "251b02146df53692",
+        "type": "comment",
+        "z": "1f01fe57083a15d4",
+        "name": "Send number to 0.0.0.0:500",
+        "info": "",
+        "x": 1120,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "1179f74d22f6b51c",
+        "type": "function",
+        "z": "1f01fe57083a15d4",
+        "name": "errors path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "b7db54920b39722c"
+            ]
+        ]
+    },
+    {
+        "id": "b7db54920b39722c",
+        "type": "file",
+        "z": "1f01fe57083a15d4",
+        "name": "write error log",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 580,
+        "y": 280,
+        "wires": [
+            []
         ]
     }
 ]
