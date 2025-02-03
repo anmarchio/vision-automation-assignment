@@ -22,7 +22,7 @@ The assignment is split into 3 dedicated tasks. The key objectives can be summed
 └── README.md           # Project documentation
 ```
 
-## 🛠 **How to Run the Project**
+## 🛠 **Setting up the Project**
 
 1. Clone this repository:
 ```bash
@@ -54,15 +54,7 @@ node-red
 * Click `Install`
 * Check if `@opcua/ua-client` shows up under `Installed Nodes`
 
-#### Open Node-Red Flows
-
-* Select `management/import`
-* Choose related files from `node-red/`
-  * Task 1: `node-red/ipc-communication.json` for the IPC communication flow
-  * Task 2: `node-red/opc-ua-communication.json` for the OPC UA communication flow
-  * Task 3: `node-red/rest-api-communication.json` for the REST API communication flow
-* To execute one node, select the related tab and click `deploy`
-* Execution will then run locally and output should appear in the debug window
+## 📡 **Running the Assignment**
 
 ### Set Environemt Variables
 
@@ -72,31 +64,34 @@ node-red
   * `ROOT_PATH`: `<YOUR-DIRECTORY>\vision-automation-assignment`
   * `WEBHOOK`: `localhost:8000`
 
-### Running Python Scripts
+### Task 1: JSON parsing and REST API Communication
 
-For reasons of completeness, the same functionality can also be executed as python scripts.
-For the purpose, proceed as follows:
-
-1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-2. Run the script:
+* *Run Python Environment:* 
 ```bash
 python main.py
+``` 
+* select `1` to run the uvicorn server on `localhost:8000`
+* In node-red, select `management/import`
+  * import the json file: `node-red/ipc-communication.json`
+  * select `deploy` to run the IPC communication flow
+* Execution will then run locally and output should appear in the debug window
+  * Check for terminal output
+  * Should show `1` upon execution
+
+### Task 2: IPC Integration
+* Import the json file: `node-red/rest-api-communication.json` 
+* Click deploy to run the flow
+
+### Task 3: OPC UA Communication
+* Import the json file: `node-red/opc-ua-communication.json` 
+* Check if the opc ua node is active (see instructions to install nodes above)
+* Click deploy to run the flow
+* Message will be written to: `opc.tcp://opcuademo.sterfive.com:26543/UA/SampleServer` 
+
+### Run unittests
+```bash
+python -m unittest discover tests
 ```
-
-4. Run script for the equivalent task:
-
-* *For Task 1:* 
-  * start local server: `uvicorn app:app --reload --host 0.0.0.0 --port 8000`
-  * select `1` when running `python main.py` 
-* *Task 2:* 
-  * Run: `python main.py`
-  * Select `2` 
-* *Task 3:*
-  * Will write message to: `opc.tcp://opcuademo.sterfive.com:26543/UA/SampleServer` 
 
 ## ⚠️ Error Handling
 * Node-RED catch nodes for structured exception handling

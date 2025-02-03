@@ -6,8 +6,6 @@ import sys
 import uvicorn
 
 from endpoints.tcp_listener import run_tcp_listener
-from python.ipc_integration import monitor_objects
-from python.opcua_communication import extract_and_send_faults_via_opc_ua
 
 
 def main() -> int:
