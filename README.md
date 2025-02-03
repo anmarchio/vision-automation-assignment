@@ -5,26 +5,22 @@ This repository contains the solution to the **36zero Vision Automation Engineer
 ---
 
 ## 🚀 **Assignment Overview**
-The key objectives of this project are:  
-- Parsing and processing data in different formats such as **JSON** and **XML**  
-- Integrating with systems like **REST APIs**, **Industrial PCs (IPC)**, and **OPC UA**  
-- Showcasing automation with **low-code platforms (Node-RED)**  
-- Exception handling and robust logging for maintainability  
+The assignment is split into 3 dedicated tasks. The key objectives can be summed up as follows:  
+- Task 1: Parsing and processing data from json files and send POST and GET requests to an API endpoint
+- Task 2: Communicating with an OPC UA server and sending data to a REST API endpoint
+- Task 3: Communicating with an IPC and sending DIO signals via a standardized interface (TCP/IP)
+- Ensure Exception handling and logging for maintainability  
 
 ---
 
 ## 📁 **Project Structure**
 ```plaintext
+├── /                   # raw assignment source data and configuration files
 ├── endpoints/          # Python helper scripts
 ├── node-red/           # Node-RED flow files (exported JSON)
 ├── requirements.txt    # Python dependencies (if applicable)
 └── README.md           # Project documentation
 ```
-
-## 🛠 **Install Prerequesites**
-
-* Get and install java for your environment: https://www.java.com/en/download/
-* Get and Extract JMeter: https://jmeter.apache.org/download_jmeter.cgi
 
 ## 🛠 **How to Run the Project**
 
