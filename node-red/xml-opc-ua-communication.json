@@ -86,10 +86,11 @@
         "scope": null,
         "uncaught": false,
         "x": 110,
-        "y": 240,
+        "y": 380,
         "wires": [
             [
-                "9cc31b12589e0e34"
+                "9cc31b12589e0e34",
+                "70c7666f6c28a084"
             ]
         ]
     },
@@ -107,19 +108,19 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 310,
-        "y": 240,
+        "y": 460,
         "wires": []
     },
     {
         "id": "2c03f15d175cc74f",
         "type": "status",
         "z": "37a5c325cf9b0143",
-        "name": "Monitor OPC UA Connection",
+        "name": "OPC UA Connection",
         "scope": [
             "71a66349c29ea9dc"
         ],
-        "x": 160,
-        "y": 340,
+        "x": 130,
+        "y": 240,
         "wires": [
             [
                 "49098a0663edbd2f"
@@ -130,18 +131,20 @@
         "id": "49098a0663edbd2f",
         "type": "function",
         "z": "37a5c325cf9b0143",
-        "name": "Reconnection Logic",
-        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to OPC UA server...');\n    // Reconnection logic if applicable\n}\nreturn msg;",
+        "name": "Reconnection Statement",
+        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to OPC UA server...');\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 470,
-        "y": 340,
+        "x": 390,
+        "y": 240,
         "wires": [
-            []
+            [
+                "c4463ece364e2868"
+            ]
         ]
     },
     {
@@ -212,7 +215,7 @@
         "name": "OPC UA Write",
         "endpoint": "d5243af7c16fdf26",
         "attributeId": "Value",
-        "nodeId": "",
+        "nodeId": "payload",
         "x": 1100,
         "y": 140,
         "wires": [
@@ -220,6 +223,70 @@
                 "7c9299b31c0bc5e8"
             ]
         ]
+    },
+    {
+        "id": "70c7666f6c28a084",
+        "type": "function",
+        "z": "37a5c325cf9b0143",
+        "name": "error log path",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}\\\\errors.log`;\nmsg.payload = msg.error;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "2919f37fac342bdd"
+            ]
+        ]
+    },
+    {
+        "id": "2919f37fac342bdd",
+        "type": "file",
+        "z": "37a5c325cf9b0143",
+        "name": "Write Error Log",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "false",
+        "encoding": "none",
+        "x": 520,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdaa41334281b222",
+        "type": "comment",
+        "z": "37a5c325cf9b0143",
+        "name": "Exception Handling",
+        "info": "",
+        "x": 130,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "c4463ece364e2868",
+        "type": "debug",
+        "z": "37a5c325cf9b0143",
+        "name": "Debug Output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "error",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 240,
+        "wires": []
     },
     {
         "id": "d5243af7c16fdf26",

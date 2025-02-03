@@ -17,8 +17,8 @@
         "chunk": false,
         "sendError": true,
         "allProps": false,
-        "x": 530,
-        "y": 140,
+        "x": 510,
+        "y": 120,
         "wires": [
             [
                 "f4f5122ddab5b06d"
@@ -33,8 +33,8 @@
         "property": "payload",
         "action": "obj",
         "pretty": false,
-        "x": 730,
-        "y": 140,
+        "x": 690,
+        "y": 120,
         "wires": [
             [
                 "33d2a5d10c8a5a67"
@@ -46,15 +46,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "Count fi_confidence > 0.99",
-        "func": "let fiConfidenceValues = msg.payload.results.up.fi_confidence || [];\nlet count = fiConfidenceValues.filter(v => v > 0.99).length;\nmsg.payload = { count: count };\nreturn msg;",
+        "func": "let fiConfidenceValues = msg.payload.results.up.fi_confidence || [];\nlet count = fiConfidenceValues.filter(v => v > 0.99).length;\nmsg.payload = count;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 980,
-        "y": 140,
+        "x": 920,
+        "y": 120,
         "wires": [
             [
                 "81c4ce5d4703f31d"
@@ -84,8 +84,8 @@
                 "valueValue": ""
             }
         ],
-        "x": 1650,
-        "y": 140,
+        "x": 1600,
+        "y": 120,
         "wires": [
             [
                 "97c25b25f4abdf13"
@@ -105,8 +105,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1900,
-        "y": 140,
+        "x": 1820,
+        "y": 120,
         "wires": []
     },
     {
@@ -114,15 +114,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "Extract tr_values",
-        "func": "let trValues = msg.payload.results.up.tr_values || [];\nlet resultArray = trValues.map(item => {\n    return item.replace(/\\D+/g, '');\n});\n\nmsg.payload = resultArray;\nreturn msg;",
+        "func": "let trValues = msg.payload.results.up.tr_values || [];\nlet resultArray = trValues.map(item => {\n    return item.replace(/\\D+/g, '');\n});\n\n// Parse values\n// by splitting any whitespace and newlines \\n\n// and keep only numeric values\nlet cleanValues = trValues\n    .flatMap(item => item.split(/\\s+/))\n    .map(value => value.trim())\n    .filter(value => /^\\d+$/.test(value));\n\n\nmsg.payload = cleanValues;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 950,
-        "y": 200,
+        "x": 890,
+        "y": 180,
         "wires": [
             [
                 "4606a04298a2e4c9"
@@ -141,8 +141,8 @@
         "stream": false,
         "addname": "",
         "property": "payload",
-        "x": 1180,
-        "y": 200,
+        "x": 1140,
+        "y": 180,
         "wires": [
             [
                 "c4d5b61677d7355b"
@@ -165,8 +165,8 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1620,
-        "y": 200,
+        "x": 1560,
+        "y": 180,
         "wires": [
             [
                 "cb452c3d4b8e3e8f"
@@ -186,8 +186,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1940,
-        "y": 200,
+        "x": 1860,
+        "y": 180,
         "wires": []
     },
     {
@@ -207,8 +207,8 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 140,
-        "y": 540,
+        "x": 130,
+        "y": 420,
         "wires": [
             [
                 "ee46e709f306bab6",
@@ -227,8 +227,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 560,
-        "y": 540,
+        "x": 530,
+        "y": 420,
         "wires": [
             []
         ]
@@ -239,8 +239,8 @@
         "z": "c1a01d9b5d27c1c8",
         "name": "Error Handling",
         "info": "",
-        "x": 150,
-        "y": 480,
+        "x": 140,
+        "y": 360,
         "wires": []
     },
     {
@@ -254,11 +254,11 @@
         "chunk": false,
         "sendError": true,
         "allProps": false,
-        "x": 530,
-        "y": 200,
+        "x": 510,
+        "y": 180,
         "wires": [
             [
-                "593c9a0581ddee3b"
+                "fa80b68fe17bdb12"
             ]
         ]
     },
@@ -280,27 +280,11 @@
         "payload": "",
         "payloadType": "date",
         "x": 150,
-        "y": 160,
+        "y": 140,
         "wires": [
             [
                 "8490197798f1ce02",
                 "e3959aba106e6d25"
-            ]
-        ]
-    },
-    {
-        "id": "593c9a0581ddee3b",
-        "type": "json",
-        "z": "c1a01d9b5d27c1c8",
-        "name": "Parse JSON",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 730,
-        "y": 200,
-        "wires": [
-            [
-                "a5c43c0bb2cd5bc1"
             ]
         ]
     },
@@ -317,8 +301,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 340,
+        "x": 390,
+        "y": 260,
         "wires": []
     },
     {
@@ -334,8 +318,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 430,
-        "y": 380,
+        "x": 390,
+        "y": 300,
         "wires": []
     },
     {
@@ -356,7 +340,7 @@
         "payload": "WEBHOOK",
         "payloadType": "env",
         "x": 180,
-        "y": 380,
+        "y": 300,
         "wires": [
             [
                 "d209036b624d7f52"
@@ -381,7 +365,7 @@
         "payload": "ROOT_PATH",
         "payloadType": "env",
         "x": 180,
-        "y": 340,
+        "y": 260,
         "wires": [
             [
                 "8b9dc54418133acc"
@@ -393,7 +377,7 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "1.json path",
-        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/144.json`;\nreturn msg;",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/1.json`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -401,7 +385,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
                 "adf1e724b8455c4f"
@@ -421,7 +405,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 200,
+        "y": 180,
         "wires": [
             [
                 "1a4635be608d34e3"
@@ -433,15 +417,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "Build URL serials",
-        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/serials/${msg.payload}`;\nreturn msg;",
+        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/serial/${msg.payload}`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1390,
-        "y": 200,
+        "x": 1330,
+        "y": 180,
         "wires": [
             [
                 "33bb11dd78a37f2d"
@@ -453,15 +437,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "Build URL fi_confidence",
-        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/fi_confidence`;\nreturn msg;",
+        "func": "let webhook = env.get(\"WEBHOOK\");\nmsg.url = `${webhook}/count/${msg.payload}`;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1390,
-        "y": 140,
+        "x": 1350,
+        "y": 120,
         "wires": [
             [
                 "4518b2cb44d7b2c7"
@@ -473,15 +457,15 @@
         "type": "function",
         "z": "c1a01d9b5d27c1c8",
         "name": "error log path",
-        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nreturn msg;",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}\\\\errors.log`;\nlet errorObject = msg.error;\nmsg.payload = msg.error;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 350,
-        "y": 540,
+        "x": 330,
+        "y": 420,
         "wires": [
             [
                 "b4aa15dd533a7d8a"
@@ -501,8 +485,24 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 350,
-        "y": 620,
+        "x": 320,
+        "y": 500,
         "wires": []
+    },
+    {
+        "id": "fa80b68fe17bdb12",
+        "type": "json",
+        "z": "c1a01d9b5d27c1c8",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 690,
+        "y": 180,
+        "wires": [
+            [
+                "a5c43c0bb2cd5bc1"
+            ]
+        ]
     }
 ]

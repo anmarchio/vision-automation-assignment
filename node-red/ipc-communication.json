@@ -16,7 +16,7 @@
         "format": "utf8",
         "allProps": false,
         "x": 470,
-        "y": 180,
+        "y": 100,
         "wires": [
             [
                 "7a1eecc26ebd3e09"
@@ -32,7 +32,7 @@
         "action": "obj",
         "pretty": false,
         "x": 670,
-        "y": 180,
+        "y": 100,
         "wires": [
             [
                 "ce8650479414fdd7"
@@ -52,7 +52,7 @@
         "finalize": "",
         "libs": [],
         "x": 890,
-        "y": 180,
+        "y": 100,
         "wires": [
             [
                 "9deeec752a3a0b05",
@@ -71,8 +71,8 @@
         "base64": false,
         "end": false,
         "tls": "",
-        "x": 1110,
-        "y": 180,
+        "x": 1130,
+        "y": 100,
         "wires": []
     },
     {
@@ -83,7 +83,7 @@
         "scope": null,
         "uncaught": false,
         "x": 110,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "8cd539504dfc5fca",
@@ -105,19 +105,19 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 350,
-        "y": 380,
+        "y": 400,
         "wires": []
     },
     {
         "id": "8c0c4145d9919a56",
         "type": "status",
         "z": "1f01fe57083a15d4",
-        "name": "Monitor DIO Connection",
+        "name": "TCP Connection",
         "scope": [
             "9deeec752a3a0b05"
         ],
-        "x": 140,
-        "y": 480,
+        "x": 120,
+        "y": 200,
         "wires": [
             [
                 "554c736218505baf"
@@ -128,16 +128,16 @@
         "id": "554c736218505baf",
         "type": "function",
         "z": "1f01fe57083a15d4",
-        "name": "Reconnection Logic",
-        "func": "if (msg.status.text === 'disconnected') {\n    node.warn('Reconnecting to IPC...');\n}\nreturn msg;",
+        "name": "Connection Statement",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nif (msg.status.text === 'disconnected') {\n    node.warn('Connection is lost ...');\n}\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 370,
-        "y": 480,
+        "x": 360,
+        "y": 200,
         "wires": [
             [
                 "24dd64bde856a0a2"
@@ -167,8 +167,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1100,
-        "y": 120,
+        "x": 1120,
+        "y": 40,
         "wires": []
     },
     {
@@ -193,7 +193,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 110,
-        "y": 180,
+        "y": 100,
         "wires": [
             [
                 "3f153042679ca7ce"
@@ -213,7 +213,7 @@
         "finalize": "",
         "libs": [],
         "x": 290,
-        "y": 180,
+        "y": 100,
         "wires": [
             [
                 "0d222ee35951571d"
@@ -229,22 +229,22 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
+        "complete": "status.text",
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
         "x": 580,
-        "y": 480,
+        "y": 200,
         "wires": []
     },
     {
         "id": "251b02146df53692",
         "type": "comment",
         "z": "1f01fe57083a15d4",
-        "name": "Send number to 0.0.0.0:500",
+        "name": "Send signal to 0.0.0.0:500",
         "info": "",
-        "x": 1120,
-        "y": 260,
+        "x": 1150,
+        "y": 180,
         "wires": []
     },
     {
@@ -252,7 +252,7 @@
         "type": "function",
         "z": "1f01fe57083a15d4",
         "name": "errors path",
-        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nreturn msg;",
+        "func": "let rootPath = env.get(\"ROOT_PATH\");\nmsg.filename = `${rootPath}/errors.log`;\nmsg.payload = msg.error;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -260,7 +260,7 @@
         "finalize": "",
         "libs": [],
         "x": 350,
-        "y": 280,
+        "y": 340,
         "wires": [
             [
                 "b7db54920b39722c"
@@ -278,10 +278,20 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 580,
-        "y": 280,
+        "x": 600,
+        "y": 340,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "023319a27d522e03",
+        "type": "comment",
+        "z": "1f01fe57083a15d4",
+        "name": "Exception Handling",
+        "info": "",
+        "x": 130,
+        "y": 280,
+        "wires": []
     }
 ]

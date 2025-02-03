@@ -24,6 +24,10 @@ def main() -> int:
     elif choice == "2":
         print("Run TCP Listener on 0.0.0.0:500")
         run_tcp_listener()
+    elif choice == "3":
+        print("NOTE:")
+        print("! No OPC UA implementation available !")
+        print("Use the sterfive implementation.")
 
     return 0
 
