@@ -13,6 +13,7 @@ The assignment is split into 3 dedicated tasks. The key objectives can be summed
 ## 📁 **Project Structure**
 ```plaintext
 ├── /                   # raw assignment source data and configuration files
+├── /assets/            # images and other assets
 ├── endpoints/          # Python helper scripts
 ├── node-red/           # Node-RED flow files (exported JSON)
 ├── requirements.txt    # Python dependencies (if applicable)
