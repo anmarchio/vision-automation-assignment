@@ -108,6 +108,7 @@ python main.py
 #### Discussion
 * As an interface to send DIO signals, a TCP/IP endpoint is used
 * Also, the 'signal' will be an integer `1` which would equal a common `ON` signal
+* Potentially, other interfaces could be used for DIO communication, e.g.: MQTT, OPC UA, GPIO with commercial sdk
 
 <img src="assets/ipc-communication.png" alt="Node-RED IPC Communication" width="700"/>
 
